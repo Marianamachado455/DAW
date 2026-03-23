@@ -37,11 +37,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $nome = $_POST["nome"];
         $email = $_POST["email"];
 
-        $linhas = file("alunos.txt");
-
         $arq = fopen("alunos.txt", "w");
 
-        foreach ($linhas as $linha) {
+        while (($linha = fgets($arq)) !== false) {
 
             $dados = explode(";", trim($linha));
 
@@ -83,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <h1>Atualizar Aluno</h1>
 
 <form method="POST">
-    Matrícula: <input type="text" name="matricula" value="<?php echo $alunoEncontrado[0]; ?>">
+    Matrícula: <input type="hidden" name="matricula" value="<?php echo $alunoEncontrado[0]; ?>">
     <br><br>
     Nome: <input type="text" name="nome" value="<?php echo $alunoEncontrado[1]; ?>">
     <br><br>
