@@ -21,7 +21,6 @@
             fclose($arqPerg2);
         ?>
         </table>
-        <p><?php echo $msg ?></p>
         <br>
     
     <h2>Perguntas Multipla Escolha</h2>
@@ -44,7 +43,6 @@
             fclose($arqPerg1);
         ?>
         </table>
-        <p><?php echo $msg ?></p>
      <form action="index.php">
         <button>Voltar</button>
     </form>

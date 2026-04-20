@@ -29,5 +29,8 @@
 	<form action="excluirPergResp.php">
 		<button>Excluir Pergunta</button><br><br>	
 	</form>
+	<form action="cadastrarUsuario.php">
+		<button>Cadastrar Usuario</button><br><br>	
+	</form>
 </body>
 </html>

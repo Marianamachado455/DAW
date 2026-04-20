@@ -9,7 +9,7 @@
             fwrite($arqPerg2, "Pergunta; Resposta;\n");
         }
         
-        fwrite($arqPerg2, "$pergunta; $resposta\n");
+        fwrite($arqPerg2, "$pergunta; $resposta;\n");
     }
 ?>
 
