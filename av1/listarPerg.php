@@ -88,7 +88,7 @@
             <td><?php echo $dadosEncontrados[4]; ?></td>
         </tr>
     </table>
-    <?php } ?>
+    <?php } ?><p></p>
     <form action="index.php">
         <button>Voltar</button>
     </form>

@@ -42,7 +42,7 @@
         
             fclose($arqPerg1);
         ?>
-        </table>
+        </table><p></p>
      <form action="index.php">
         <button>Voltar</button>
     </form>

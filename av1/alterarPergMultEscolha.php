@@ -1,29 +1,31 @@
 <?php
     $perguntaEncontrada = null;
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
-        $pergunta = $_GET["pergunta"];
+        if (isset($_GET["pergunta"])) {
+            $pergunta = $_GET["pergunta"];
 
-        $arqPergunta1 = fopen("pergMultiplaEscolha.txt", "r");
-        if ($arqPergunta1) {
+            $arqPergunta1 = fopen("pergMultiplaEscolha.txt", "r");
+            if ($arqPergunta1) {
 
-            while (!feof($arqPergunta1)) {
-                $linha = fgets($arqPergunta1);
-                $dados = explode(";", trim($linha));
+                while (!feof($arqPergunta1)) {
+                    $linha = fgets($arqPergunta1);
+                    $dados = explode(";", trim($linha));
 
-                if ($dados[0] == $pergunta) {
-                    $perguntaEncontrada = $dados;
+                    if ($dados[0] == $pergunta) {
+                        $perguntaEncontrada = $dados;
+                    }
                 }
+
+                if ($perguntaEncontrada == NULL) {
+                    echo "Pergunta não encontrada.";
+                }
+
+                fclose($arqPergunta1);
             }
 
-            if ($perguntaEncontrada == NULL) {
-                echo "Pergunta não encontrada.";
-            }
-
-            fclose($arqPergunta1);
-        }
-
-        else {
-            echo "Arquivo não existe.";
+            else {
+                echo "Arquivo não existe.";
+            }   
         }
     }
 

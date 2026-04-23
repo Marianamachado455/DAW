@@ -5,13 +5,13 @@
         $senha = $_POST["senha"];
         $senha2 = $_POST["senha2"];
         
-        $arqPerg1 = fopen("usuarios.txt", "a");
+        $arqUsuario = fopen("usuarios.txt", "a");
 
-        if (!$arqPerg1) {
-            fwrite($arqPerg1, "Nome; Email; Senha;\n");
+        if (!$arqUsuario) {
+            fwrite($arqUsuario, "Nome; Email; Senha;\n");
         }
         
-        fwrite($arqPerg1, "$name; $email; $senha;\n");
+        fwrite($arqUsuario, "$name; $email; $senha;\n");
     }
 ?>
 
@@ -23,8 +23,8 @@
     <title>Cadastrar Usuario</title>
 </head>
 <body>
-    <form action="criarPergRespME.php" method="post">
-        Nome: <input type="text" name="nome" required><br><br>
+    <form action="cadastrarUsuario.php" method="post">
+        Nome: <input type="text" name="name" required><br><br>
         Email:<input type="email"  name="email"><br><br>
         Senha:<input type="password" name="senha"><br><br>
         Confirmar Senha:<input type="password" name="senha2"><br><br>
