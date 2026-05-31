@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+let operacao = "";
+
+function calcular(event) {
+    let a = Number(document.getElementById("a").value);
+    let b = Number(document.getElementById("b").value);
+    let resultado;
+
+    if (operacao == "Somar") {
+        resultado = a + b;
+    } 
+
+    else if (operacao == "Diminuir") {
+        resultado = a - b;
+    } 
+
+    else if (operacao == "Multiplicar") {
+        resultado = a * b;
+    } 
+
+    else if (operacao == "Dividir") {
+        resultado = a / b;
+    }
+
+    document.getElementById("resultado").innerText = resultado;
+}
+</script>
+
+</head>
+<body>
+
+<h1>Minha Calculadora!</h1>
+
+<form onsubmit="calcular(event)">
+    a:<input type="text" id="a"><br>
+    b:<input type="text" id="b"><br>
+
+    Escolha a operação que deseja realizar.<br>
+
+    <input type="submit" value="Somar" onclick="operacao='Somar'">
+    <input type="submit" value="Diminuir" onclick="operacao='Diminuir'">
+    <input type="submit" value="Multiplicar" onclick="operacao='Multiplicar'">
+    <input type="submit" value="Dividir" onclick="operacao='Dividir'">
+
+    <br><br>
+
+    Resultado: <span id="resultado"></span>
+</form>
+</body>
+</html>

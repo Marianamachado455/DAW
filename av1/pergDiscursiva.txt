@@ -1,0 +1,4 @@
+Pergunta; Resposta;
+Qual é o nome do coletivo de corvos?;  murderrrr;
+teste; resposta;
+Qual é a capital do Brasil?; Brasília;

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incluir Aluno</title>
+    <script>
+        let arrayAlunos = [];
+        
+        function incluirAluno(event) {
+            event.preventDefault();
+
+            var nome = document.getElementById('nome').value;
+            var email = document.getElementById('email').value;
+            var matricula = document.getElementById('matricula').value;
+            // Lógica para incluir aluno
+            const regexEmail = /.+@.+\..+/;
+            const regexMatricula = /^\d{6}$/;
+
+            if (!regexEmail.test(email)) {
+                alert('Email inválido. Por favor, insira um email válido.');
+                return;
+            }   
+
+            if (!regexMatricula.test(matricula)) {
+                alert('Matrícula inválida. A matrícula deve conter exatamente 6 dígitos numéricos.');
+                return;
+            }
+
+            let linha = nome + ";" + matricula + ";" + email;
+            arrayAlunos.push(linha);
+        }
+    </script>
+</head>
+<body>
+    <h1>Incluir Novo Aluno</h1>
+    <form onsubmit="incluirAluno(event)">
+        Nome: <input type="text" id="nome"><br><br>
+        Email: <input type="email" id="email"><br><br>
+        Matricula: <input type="text" id="matricula"><br><br>
+        <input type="submit" value="Incluir Aluno">
+    </form>
+</body>
+</html>
