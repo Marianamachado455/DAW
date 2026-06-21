@@ -1,9 +1,11 @@
-//AJAX
-  unction ajax(method, url, data, callback) {
+function ajax(method, url, data, callback) {
   var xhr = new XMLHttpRequest();
 
   xhr.open(method, url, true);
-  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  if (method === "POST") {
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  }
 
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -11,19 +13,19 @@
     }
   };
 
-  xhr.send(data);
+  xhr.send(data || null);
 }
 
-//Criar itens 
+// Criar itens
 function createItem() {
   var name = document.getElementById("name").value;
 
-  ajax("POST", "api/create.php", "name=" + name, function () {
+  ajax("POST", "api/create.php", "name=" + encodeURIComponent(name), function () {
     loadItems();
   });
 }
 
-//carregar itens
+// Carregar itens
 function loadItems() {
   ajax("GET", "api/read.php", null, function (res) {
     var data = JSON.parse(res);
@@ -43,18 +45,23 @@ function loadItems() {
   });
 }
 
-//Atualizar itens
+// Atualizar itens
 function updateItem(id) {
   var name = prompt("Novo nome:");
 
-  ajax("POST", "api/update.php", "id=" + id + "&name=" + name, function () {
-    loadItems();
-  });
+  ajax(
+    "POST",
+    "api/update.php",
+    "id=" + encodeURIComponent(id) + "&name=" + encodeURIComponent(name),
+    function () {
+      loadItems();
+    }
+  );
 }
 
-//Deletar itens
+// Deletar itens
 function deleteItem(id) {
-  ajax("POST", "api/delete.php", "id=" + id, function () {
+  ajax("POST", "api/delete.php", "id=" + encodeURIComponent(id), function () {
     loadItems();
   });
 }
