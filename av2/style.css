@@ -1,0 +1,192 @@
+/* =================================
+   GOLBAL
+================================= */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+:root {
+    --rosa-principal: #dc407e;
+    --branco: #ffffff;
+    --preto: #000000;
+
+    --cinza-claro: #e6e6e6;
+    --cinza-medio: #d9d9d9;
+
+    /* Fontes */
+    --fonte-padrao: Arial, sans-serif;
+
+    /* Sombras */
+    --sombra-botao: 0px 1px 2px rgba(0,0,0,0.05);
+    --sombra-card: 0px 4px 4px rgba(0,0,0,0.25);
+
+    /* Bordas */
+    --borda-pequena: 4px;
+    --borda-media: 20px;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+
+.pagina-login {
+    min-height: 100vh;
+    background: white;
+}
+
+.navbar {
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    font-size: medium;
+    padding: 0 50px;
+    font-weight: bold;
+    background-color: rgb(224, 222, 222);
+}
+
+/* Pagina login */
+.logo {
+    font-size: 40px;
+    color: rgb(207, 13, 88);
+}
+
+.menu {
+    display: flex;
+    gap: 20px;
+}
+
+.heroSection {
+    width: 500px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: large;
+}
+
+.titulo1 {
+    text-align: center;
+    color: rgb(207, 13, 88);
+}
+
+.checkbox-login {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#botao-login {
+    padding: 14px;
+    width: 65%;
+    background-color: rgb(207, 13, 88);
+    border-radius: 50px;
+    border: none;
+    color: white;
+    font-size: 27px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+}
+
+#link-cadastro {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 100px;
+}
+
+footer {
+    background: rgb(207, 13, 88);
+    color: white;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+}
+
+footer section {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; 
+}
+
+.sobre p,
+.contato p,
+.copyright p {
+    margin: 0;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.campo-centralizado {
+    width: 430px; 
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Linha com 2 campos lado a lado */
+.linha {
+    display: flex;
+    gap: 30px;
+}
+
+/* Campo grande */
+.input-longo {
+    width: 560px;
+    border-radius: 5px;
+    border: 1px solid rgb(202, 202, 202);
+    padding: 10px;
+    background-color: rgb(202, 202, 202);
+    box-shadow: 0px 1px 2px #000000;
+}
+
+.input-normal {
+    width: 400px;
+    border-radius: 10px;
+    border: 1px solid rgb(202, 202, 202);
+    padding: 15px;
+    background-color: rgb(202, 202, 202);
+    box-shadow: 0px 1px 2px #000000;
+}
+
+/* Campo pequeno  */
+.input-pequeno {
+    justify-content: space-between;
+    width: 250px;
+    border-radius: 5px;
+    border: 1px solid rgb(202, 202, 202);
+    padding: 10px;
+    background-color: rgb(202, 202, 202);
+    box-shadow: 0px 1px 2px #000000;
+}
+
+/* Labels */
+.campo label {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(77, 75, 75);
+}
+
+.campo-centralizado label {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(77, 75, 75);
+}
+
+/*Especifico pag cadastrio*/
+.checkbox-cadastro {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+}

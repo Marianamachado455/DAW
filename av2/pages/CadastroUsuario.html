@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Luméa</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header class="navbar">
+        <h1 class="logo">Luméa</h1>
+        <nav>
+            <ul>
+                <a href="#">Serviços</a>
+                <a href="#">Favoritos</a>
+                <a href="#">Perfil</a>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="heroSection">
+            <h2 class="titulo1">Cadastro</h2>
+
+            <div class="campo">
+                <label for="nome">Nome completo</label>
+                <input type="text" id="nome" class="input-longo">
+            </div>
+
+            <div class="linha">
+                <div class="campo">
+                    <label for="cpf">CPF</label>
+                    <input type="text" id="cpf" class="input-pequeno">
+                </div>
+
+                <div class="campo">
+                    <label for="data_nascimento">Data de nascimento</label>
+                    <input type="date" id="data_nascimento" class="input-pequeno">
+                </div>
+            </div>
+
+            <div class="linha">
+                <div class="campo">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="input-pequeno">
+                </div>
+
+                <div class="campo">
+                    <label for="telefone">Telefone</label>
+                    <input type="text" id="telefone" class="input-pequeno">
+                </div>
+            </div>
+
+            <div class="checkbox-cadastro">
+                <div>
+                    <input type="checkbox">
+                    <span>Desejo receber novidades por email</span>
+                </div>
+            </div>
+
+            <div class="linha">
+                <div class="campo">
+                    <label>Crie uma senha</label>
+                    <input type="password" id="senha" class="input-pequeno">
+                </div>
+                <div class="campo">
+                    <label>Confirme a senha</label>
+                    <input type="password" id="confirmar-senha" class="input-pequeno">
+                </div>
+            </div>
+
+            <br><button type="submit" id="botao-login" onclick="criarConta()">
+                Cadastrar
+            </button><br>
+
+            
+        </section>
+    </main>
+    <footer>
+        <section class="sobre">
+            <h3>Luméa</h3>
+            <p>
+                A Luméa nasceu do sonho de transformar o cuidado
+                com a beleza em uma experiência única de bem-estar.
+            </p>
+
+        </section>
+
+        <!-- Contato -->
+        <section class="contato">
+            <h3>Contato</h3>
+            <p>Rua das Flores, 123</p>
+            <p>(11) 98765-4321</p>
+            <p>contato@lumea.com.br</p>
+        </section>
+
+        <section class="copyright">
+            <p>
+                © 2025 Luméa Estética. Todos os direitos reservados.
+            </p>
+        </section>
+    </footer>
+    <script src="../app.js"></script>
+</body>
+</html>
