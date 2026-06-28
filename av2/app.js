@@ -49,6 +49,7 @@ function login() {
     alert("Preencha email e senha!");
     return;
   }
+  
   const data =
     "email=" + encodeURIComponent(email) +
     "&senha=" + encodeURIComponent(senha);
@@ -62,7 +63,7 @@ function login() {
     } 
     
     else {
-      console.log(json.msg);
+      alert(json.msg);
     }
   });
 }
@@ -204,7 +205,7 @@ function agendar() {
        mostrarModalSucesso();
     } else {
       alert(json.msg);
-      window.location.href = "../pages/pagInical.html";
+      window.location.href = "../pages/pagInicial.html";
     }
   });
 }

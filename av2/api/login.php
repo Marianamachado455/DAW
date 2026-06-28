@@ -25,8 +25,4 @@ if ($result && $result->num_rows > 0) {
         "msg" => "Login inválido"
     ]);
 }
-echo json_encode([
-  "debug" => "chegou no final do PHP"
-]);
-exit;
 ?>
