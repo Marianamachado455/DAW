@@ -17,18 +17,42 @@
             </ul>
         </nav>
     </header>
-    <h1>Página Inicial</h1>
-    <h2>Selecione o serviço que deseja:</h2>
-    <ul>
-        <li><a href="agendamento.html">Cabelo</a></li>
-        <li><a href="agendamento.html">Maquiagem</a></li>
-        <li><a href="agendamento.html">Manicure</a></li>
-        <li><a href="agendamento.html">Sobrancelha</a></li>
-        <li><a href="agendamento.html">Massagem</a></li>
-        <li><a href="agendamento.html">Barbeearia</a></li>
-    </ul>
+    <main>
+        <h1>Página Inicial</h1>
+        <h2 style="text-align: center;">Selecione o serviço que deseja:</h2>
+        <div class="grid-servicos">
+            <div class="item" serviço="Cabelo" onclick="escolherServicoeTipo(event)">
+                <img src="../imgs/imgCabelo.jpg" alt="">
+                <p>Cabelo</p>
+            </div>
 
-    
+            <div class="item" serviço="Barbearia" onclick="escolherServicoeTipo(event)">
+                <img src="../imgs/imgBarbearia.jpg" alt="">
+                <p>Barbearia</p>
+            </div>
+
+            <div class="item" serviço="Maquiagem" onclick="escolherServicoeTipo(event)">
+                <img src="../imgs/imgMaquiagem.jpg" alt="">
+                <p>Maquiagem</p>
+            </div>
+
+            <div class="item" serviço="Manicure" onclick="escolherServicoeTipo(event)">
+                <img src="../imgs/imgUnha.jpg" alt="">
+                <p>Manicure</p>
+            </div>
+
+            <div class="item" serviço="Sobrancelha" onclick="escolherServicoeTipo(event)">
+                <img src="../imgs/imgSobrancelha.jpg" alt="">
+                <p>Sobrancelha</p>
+            </div>
+
+            <div class="item" serviço="Massagem" onclick="escolherServicoeTipo(event)">
+                <img src="../imgs/imgMassagem.avif" alt="">
+                <p>Massagem</p>
+            </div>
+        </div>
+    </main>
+
     <footer>
         <section class="sobre">
             <h3>Luméa</h3>

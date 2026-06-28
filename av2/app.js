@@ -15,30 +15,38 @@ function ajax(method, url, data, callback) {
 }
 
 // Adicionar Usuario
-function criarConta() {
-  window.location.href = "../index.html";
+function criarConta(event) {
+  event.preventDefault();
   var nome = document.getElementById("nome").value;
   var email = document.getElementById("email").value;
   var cpf = document.getElementById("cpf").value;
   var dta_nascimento = document.getElementById("data_nascimento").value;
   var telefone = document.getElementById("telefone").value;
   var senha = document.getElementById("senha").value;
-  var confirmacaoSenha = document.getElementById("confirmacao_senha").value;
+  var confirmacaoSenha = document.getElementById("confirmar-senha").value;
 
-  if (senha !== confirmacaoSenha) {
+  if (senha != confirmacaoSenha) {
     alert("As senhas não coincidem!");
     return;
   }
 
-  ajax("POST", "api/createUsuario.php", "nome=" + encodeURIComponent(nome) + 
+  ajax("POST", "../api/createUsuario.php", "nome=" + encodeURIComponent(nome) + 
     "&email=" + encodeURIComponent(email) + "&cpf=" + encodeURIComponent(cpf) + 
     "&dta_nascimento=" + encodeURIComponent(dta_nascimento) + 
     "&telefone=" + encodeURIComponent(telefone) + 
     "&senha=" + encodeURIComponent(senha), 
     function(res){
-      alert("Usuário cadastrado!");
       window.location.href = "../index.html";
+      console.log("Usuário criado com sucesso!");
   });
+}
+
+function escolherServicoeTipo(event) {
+  event.preventDefault();
+  var servico = event.currentTarget.getAttribute("servico");
+  console.log(servico);
+
+
 }
 
 // Carregar itens

@@ -31,6 +31,20 @@ a {
     text-decoration: none;
 }
 
+main h1 {
+    text-align: center;
+    color: #dc407e;
+    font-size: 60px;
+    font-weight: bold;
+}
+
+main h2{
+    text-align: center;
+    color: #dc407e;
+    font-size: 45px;
+}
+
+
 
 .pagina-login {
     min-height: 100vh;
@@ -189,4 +203,50 @@ footer section {
     display: flex; 
     justify-content: space-between; 
     align-items: center;
+}
+
+#formCadastro {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* especifico pag inicio */
+.grid-servicos{
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 55px 70px;
+
+    margin-left: 350px;
+    margin-top: 70px;
+    margin-bottom: 70px;
+    width: fit-content;
+}
+
+.item{
+    text-align: center;
+    cursor: pointer;
+    transition: .2s;
+    padding: 15px;
+    border-radius: 30px;
+    background-color: #dc407e;
+}
+
+.item:hover{
+    transform: scale(1.05);
+}
+
+.item img{
+    width: 330px;      
+    height: 250px;   
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.item p{
+    margin-top: 10px;
+    font-size: 35px;
+    font-weight: 600;
+    color: white;
 }
