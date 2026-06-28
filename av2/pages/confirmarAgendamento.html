@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pag Inicial</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header class="navbar">
+        <h1 class="logo" onclick="voltarInicio()">Luméa</h1>
+    </header>
+    <div class="agendamento-page">
+        <main class="agendamento">
+            <h1>Confirmar Agendamento</h1>
+            <h2>Selecione as informações do seu agendamento</h2>
+
+            <div id="servicoSelecionado"></div>
+            <div id="tipoContainer" class="hidden">
+                <div id="tipo"></div>
+            </div>
+
+            <h3 class="subtitulo">Profissional</h3>
+            <select id="profissionais" required></select>
+
+            <h3 class="subtitulo">Data e horário</h3>
+            <div class="linha">
+                <input type="date" id="data" required>
+                <input type="time" id="hora" required>
+            </div>
+            <hr class="divisor">
+
+            <div id="preco"></div><br>
+            <button id="botaoConfirmar" onclick="agendar()">Confirmar Agendamento</button>
+        </main>
+        <div id="modalSucesso" class="modal-sucesso">  
+                <div class="modal-box">
+                    <h2>Agendamento realizado!</h2>
+                    <p>Aproveite seu momento de cuidado e bem-estar 💆‍♀️✨</p>
+
+                    <button onclick="irInicio()">Voltar para página inicial</button>
+                </div>
+            </div>
+    </div>
+    <footer>
+        <section class="sobre">
+            <h3>Luméa</h3>
+            <p>
+                A Luméa nasceu do sonho de transformar o cuidado
+                com a beleza em uma experiência única de bem-estar.
+            </p>
+        </section>
+        <!-- Contato -->
+        <section class="contato">
+            <h3>Contato</h3>
+            <p>Rua das Flores, 123</p>
+            <p>(11) 98765-4321</p>
+            <p>contato@lumea.com.br</p>
+        </section>
+        <section class="copyright">
+            <p>
+                © 2025 Luméa Estética. Todos os direitos reservados.
+            </p>
+        </section>
+    </footer>
+    <script src="../app.js"></script>
+</body>
+</html>

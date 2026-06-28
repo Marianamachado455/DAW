@@ -10,14 +10,6 @@
 <body>
     <header class="navbar">
         <h1 class="logo">Luméa</h1>
-        <nav>
-            <ul>
-                <a href="#">Serviços</a>
-                <a href="#">Favoritos</a>
-                <a href="#">Perfil</a>
-            </ul>
-        </nav>
-
     </header>
 
     <main>
@@ -26,12 +18,12 @@
 
             <div class="campo-centralizado">
                 <label>Email</label>
-                <input type="text" class="input-normal" required>
+                <input id="email" type="text" class="input-normal" required>
             </div>
 
             <div class="campo-centralizado">
                 <label>Senha</label>
-                <input type="password" class="input-normal" required>
+                <input id="senha" type="password" class="input-normal" required>
             </div>
 
             <div class="Checkbox-login">
@@ -40,11 +32,9 @@
                     <span>Lembrar senha</span>
                 </div>
             </div>
-            <form action="pages/pagInicial.html">
-                <button type="submit" id="botao-login" onclick="logar()">
-                    Entrar
-                </button>
-            </form>
+            <button type="submit" id="botao-login" onclick="login()">
+                Entrar
+            </button>
 
             <p id="link-cadastro" style="font-weight: bold;">
                 Ainda não possui uma conta?

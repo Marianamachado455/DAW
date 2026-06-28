@@ -41,51 +41,181 @@ function criarConta(event) {
   });
 }
 
+function login() {
+  const email = document.getElementById("email").value;
+  const senha = document.getElementById("senha").value;
+
+   if (!email || !senha) {
+    alert("Preencha email e senha!");
+    return;
+  }
+  const data =
+    "email=" + encodeURIComponent(email) +
+    "&senha=" + encodeURIComponent(senha);
+
+  ajax("POST", "api/login.php", data, function(resposta) {
+    const json = JSON.parse(resposta);
+
+    if (json.status === "ok") {
+      sessionStorage.setItem("usuarioNome", json.nome);
+      window.location.href = "pages/pagInicial.html";
+    } 
+    
+    else {
+      console.log(json.msg);
+    }
+  });
+}
+
+function voltarInicio() {
+  window.location.href = "pagInicial.html";
+}
+
 function escolherServicoeTipo(event) {
   event.preventDefault();
   var servico = event.currentTarget.getAttribute("servico");
   console.log(servico);
 
+  ajax(
+    "GET", 
+    "../dados/servicos.json",
+    null,
+    function(res){
+      dadosServicos = JSON.parse(res);
+      if(dadosServicos[servico].temSubtipos){
+          mostrarModal(servico);
+      }
 
+      else{
+          sessionStorage.setItem("servicoSelecionado", servico);
+          sessionStorage.removeItem("tipoSelecionado");
+          sessionStorage.setItem("preco", dadosServicos[servico].preco);
+          sessionStorage.setItem("profissionais", JSON.stringify(dadosServicos[servico].profissionais));
+
+          window.location.href = "../pages/confirmarAgendamento.html";
+      }
+    }
+  );
 }
 
-// Carregar itens
-// function loadItems() {
-//   ajax("GET", "api/read.php", null, function (res) {
-//     var data = JSON.parse(res);
-//     var list = document.getElementById("list");
+function mostrarModal(servico, dados) {
+    document.getElementById("tituloModal").innerHTML = servico;
+    var lista = document.getElementById("listaTipos");
+    lista.innerHTML = "";
+    var tipos = dadosServicos[servico].tipos;
 
-//     list.innerHTML = "";
+    for(var i = 0; i < tipos.length; i++){
+        lista.innerHTML +=
+        "<button class='tipoServico' onclick=\"escolherTipo('" + servico + "'," + i + ")\">" +
+            "<span>" + tipos[i].nome + "</span>" +
+            "<span>R$ " + tipos[i].preco + "</span>" +
+        "</button>";
+    }
 
-//     for (var i = 0; i < data.length; i++) {
-//       list.innerHTML +=
-//         "<li>" +
-//         data[i].name +
-//         " " +
-//         "<button onclick='deleteItem(" + data[i].id + ")'>X</button>" +
-//         " <button onclick='updateItem(" + data[i].id + ")'>Editar</button>" +
-//         "</li>";
-//     }
-//   });
-// }
+    document.getElementById("modalServico").style.display = "flex";
+}
 
-// Atualizar itens
-// function updateItem(id) {
-//   var name = prompt("Novo nome:");
+function fecharModal() {
+    document.getElementById("modalServico").style.display = "none";
+}
 
-//   ajax(
-//     "POST",
-//     "api/update.php",
-//     "id=" + encodeURIComponent(id) + "&name=" + encodeURIComponent(name),
-//     function () {
-//       loadItems();
-//     }
-//   );
-// }
+function escolherTipo(servico, index) {
+  var tipo = dadosServicos[servico].tipos[index];
 
-// // Deletar itens
-// function deleteItem(id) {
-//   ajax("POST", "api/delete.php", "id=" + encodeURIComponent(id), function () {
-//     loadItems();
-//   });
-// }
+  sessionStorage.setItem("servicoSelecionado", servico);
+  sessionStorage.setItem("tipoSelecionado", tipo.nome);
+  sessionStorage.setItem("preco", tipo.preco);
+  sessionStorage.setItem("profissionais", JSON.stringify(tipo.profissionais));
+
+  window.location.href = "../pages/confirmarAgendamento.html";
+}
+
+function mostrarInformacoesAgendamento() {
+  const servico = sessionStorage.getItem("servicoSelecionado");
+  const tipo = sessionStorage.getItem("tipoSelecionado");
+  const preco = sessionStorage.getItem("preco");
+  const profissionais = JSON.parse(sessionStorage.getItem("profissionais")) || [];
+
+  document.getElementById("servicoSelecionado").innerHTML = `Serviço: ${servico}`;
+
+  if (tipo && tipo !== "undefined") {
+    document.getElementById("tipoContainer").style.display = "block";
+    document.getElementById("tipo").innerHTML = `Tipo: ${tipo}`;
+  } else {
+    document.getElementById("tipoContainer").style.display = "none";
+  }
+
+  const selectProf = document.getElementById("profissionais");
+  selectProf.innerHTML = "";
+  const placeholder = document.createElement("option");
+  placeholder.value = "";
+  placeholder.textContent = "Escolha um profissional";
+  placeholder.disabled = true;
+  placeholder.selected = true;
+  placeholder.hidden = true;
+  selectProf.appendChild(placeholder);
+
+  profissionais.forEach(p => {
+    const option = document.createElement("option");
+    option.value = p;
+    option.textContent = p;
+    selectProf.appendChild(option);
+  });
+
+  const qualquer = document.createElement("option");
+  qualquer.value = "qualquer";
+  qualquer.textContent = "Qualquer profissional disponível";
+  selectProf.appendChild(qualquer);
+
+  document.getElementById("preco").innerHTML = `Preço: R$ ${preco}`;
+}
+
+function agendar() {
+  const usuario = sessionStorage.getItem("usuarioNome") || "";
+  const profissional = document.getElementById("profissionais").value;
+  const data = document.getElementById("data").value;
+  const hora = document.getElementById("hora").value;
+  const servico = sessionStorage.getItem("servicoSelecionado");
+  const tipo = sessionStorage.getItem("tipoSelecionado");
+  const data_horario = data + " " + hora;
+
+   if (!profissional || !data || !hora) {
+    alert("Preencha todos os campos!");
+    return;
+  }
+
+  const dados =
+    "usuario=" + encodeURIComponent(usuario) +
+    "&servico=" + encodeURIComponent(servico) +
+    "&tipo=" + encodeURIComponent(tipo) +
+    "&profissional=" + encodeURIComponent(profissional) +
+    "&data_horario=" + encodeURIComponent(data_horario);
+  console.log("ENVIANDO:", dados);
+
+  ajax("POST", "../api/createAgendamento.php", dados, function(resposta) {
+    console.log("RESPOSTA BRUTA:", resposta);
+    if (!resposta || resposta.trim() === "") {
+      alert("PHP não retornou nada!");
+      return;
+    }
+    const json = JSON.parse(resposta);
+
+    if (json.status === "ok") {
+       mostrarModalSucesso();
+    } else {
+      alert(json.msg);
+      window.location.href = "../pages/pagInical.html";
+    }
+  });
+}
+
+function mostrarModalSucesso() {
+  document.getElementById("modalSucesso").style.display = "flex";
+}
+
+function irInicio() {
+  window.location.href = "../pages/pagInicial.html";
+}
+
+//garante exibicao das informacoes do agendamento na tela de confirmacao
+window.addEventListener("DOMContentLoaded", mostrarInformacoesAgendamento);

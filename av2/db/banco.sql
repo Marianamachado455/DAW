@@ -14,7 +14,6 @@ CREATE TABLE agendamento (
     usuario_nome VARCHAR(100),
     data_hora DATETIME,
     servico VARCHAR(100),
+    tipo VARCHAR(100),
     profissional VARCHAR(100),
-    forma_pagamento VARCHAR(50),
-    FOREIGN KEY (usuario_id) REFERENCES usuario(id)
 );

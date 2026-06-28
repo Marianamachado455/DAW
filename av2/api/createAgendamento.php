@@ -1,15 +1,26 @@
 <?php
     header("Content-Type: application/json");
+
     include "db.php";
 
-    $nome = $_POST['nome'];
-    $dta_horario = $_POST['data_horario'];
-    $servico = $_POST['servico'];
-    $profissional = $_POST['profissional'];
-    $forma_pagamento = $_POST['forma_pagamento'];
+    $usuario = $_POST['usuario'] ?? "";
+    $servico = $_POST['servico'] ?? "";
+    $tipo = $_POST['tipo'] ?? "";
+    $profissional = $_POST['profissional'] ?? "";
+    $data_horario = $_POST['data_horario'] ?? "";
 
-    $sql = "INSERT INTO agendamento (usuario_nome, data_hora, servico, profissional, forma_pagamento) VALUES ('$nome', '$dta_horario', '$servico', '$profissional', '$forma_pagamento')";
-    $conn->query($sql);
+    $sql = "INSERT INTO agendamento (usuario_nome, data_hora, servico, tipo, profissional)
+    VALUES ('$usuario', '$data_horario', '$servico', '$tipo', '$profissional')";
 
-    echo json_encode(["msg" => "Agendamento criado"]);
+    if ($conn->query($sql)) {
+        echo json_encode([
+            "status" => "ok",
+            "msg" => "Agendamento criado"
+        ]);
+    } else {
+        echo json_encode([
+            "status" => "erro",
+            "msg" => "Erro no banco"
+        ]);
+    }
 ?>
