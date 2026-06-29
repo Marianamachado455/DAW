@@ -54,6 +54,7 @@ function login() {
     "email=" + encodeURIComponent(email) +
     "&senha=" + encodeURIComponent(senha);
 
+  //Passa pro php autenticar, garantindo segurança
   ajax("POST", "api/login.php", data, function(resposta) {
     const json = JSON.parse(resposta);
 
@@ -77,7 +78,7 @@ function escolherServicoeTipo(event) {
   var servico = event.currentTarget.getAttribute("servico");
   console.log(servico);
 
-  ajax("GET","../api/listarServicos.php",null,
+  ajax("GET","../api/listarServico.php",null,
     function(res){
         dadosServicos = JSON.parse(res);
         var tipos = dadosServicos.filter(s => s.nome == servico);
@@ -142,13 +143,13 @@ function mostrarInformacoesAgendamento() {
 
   document.getElementById("servicoSelecionado").innerHTML = `Serviço: ${servico}`;
 
-  if (tipo && tipo !== "undefined") {
-    document.getElementById("tipoContainer").style.display = "block";
-    document.getElementById("tipo").innerHTML = `Tipo: ${tipo}`;
-  } else {
-    document.getElementById("tipoContainer").style.display = "none";
+  if (tipo) {
+      document.getElementById("tipoContainer").style.display = "block";
+      document.getElementById("tipo").innerHTML = `Tipo: ${tipo}`;
+  } 
+  else {
+      document.getElementById("tipoContainer").style.display = "none";
   }
-
   const selectProf = document.getElementById("profissionais");
   selectProf.innerHTML = "";
   const placeholder = document.createElement("option");

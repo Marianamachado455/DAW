@@ -30,15 +30,15 @@
             </div>
             <hr class="divisor">
 
-            <label id="preco"></label><br>
+            <label id="preco"></label>
 
             <label class="subtitulo">Escolha o pagamento:</label>
-            <select id="pagamento">
+            <select id="pagamento" required>
                 <option value="cartao">Cartão</option>
                 <option value="dinheiro">Dinheiro</option>
                 <option value="pix">Pix</option>
             </select>
-            <button id="botaoConfirmar" onclick="agendar()">Confirmar Agendamento</button>
+            <br><button id="botaoConfirmar" onclick="agendar()">Confirmar Agendamento</button>
         </main>
         <div id="modalSucesso" class="modal-sucesso">  
                 <div class="modal-box">
