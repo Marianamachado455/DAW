@@ -8,9 +8,10 @@
     $tipo = $_POST['tipo'] ?? "";
     $profissional = $_POST['profissional'] ?? "";
     $data_horario = $_POST['data_horario'] ?? "";
+    $pagamento = $_POST['pagamento'] ?? "";
 
-    $sql = "INSERT INTO agendamento (usuario_nome, data_hora, servico, tipo, profissional)
-    VALUES ('$usuario', '$data_horario', '$servico', '$tipo', '$profissional')";
+    $sql = "INSERT INTO agendamento (usuario_nome, data_hora, servico, tipo, profissional, pagamento)
+    VALUES ('$usuario', '$data_horario', '$servico', '$tipo', '$profissional', '$pagamento')";
 
     if ($conn->query($sql)) {
         echo json_encode([

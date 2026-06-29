@@ -77,24 +77,25 @@ function escolherServicoeTipo(event) {
   var servico = event.currentTarget.getAttribute("servico");
   console.log(servico);
 
-  ajax(
-    "GET", 
-    "../dados/servicos.json",
-    null,
+  ajax("GET","../api/listarServicos.php",null,
     function(res){
-      dadosServicos = JSON.parse(res);
-      if(dadosServicos[servico].temSubtipos){
-          mostrarModal(servico);
+        dadosServicos = JSON.parse(res);
+        var tipos = dadosServicos.filter(s => s.nome == servico);
+
+      if(tipos.length > 1){
+        mostrarModal(servico);
       }
 
       else{
-          sessionStorage.setItem("servicoSelecionado", servico);
-          sessionStorage.removeItem("tipoSelecionado");
-          sessionStorage.setItem("preco", dadosServicos[servico].preco);
-          sessionStorage.setItem("profissionais", JSON.stringify(dadosServicos[servico].profissionais));
+        var tipo = tipos[0];
 
-          window.location.href = "../pages/confirmarAgendamento.html";
-      }
+        sessionStorage.setItem("servicoSelecionado", tipo.nome);
+        sessionStorage.setItem("tipoSelecionado", tipo.tipo);
+        sessionStorage.setItem("preco", tipo.preco);
+        sessionStorage.setItem("profissionais",JSON.stringify(tipo.profissionais.split(",")));
+
+        window.location.href="../pages/confirmarAgendamento.html";
+    }
     }
   );
 }
@@ -103,12 +104,12 @@ function mostrarModal(servico, dados) {
     document.getElementById("tituloModal").innerHTML = servico;
     var lista = document.getElementById("listaTipos");
     lista.innerHTML = "";
-    var tipos = dadosServicos[servico].tipos;
+    var tipos = dadosServicos.filter(s => s.nome == servico);
 
     for(var i = 0; i < tipos.length; i++){
         lista.innerHTML +=
         "<button class='tipoServico' onclick=\"escolherTipo('" + servico + "'," + i + ")\">" +
-            "<span>" + tipos[i].nome + "</span>" +
+            "<span>" + tipos[i].tipo + "</span>" +
             "<span>R$ " + tipos[i].preco + "</span>" +
         "</button>";
     }
@@ -121,12 +122,14 @@ function fecharModal() {
 }
 
 function escolherTipo(servico, index) {
-  var tipo = dadosServicos[servico].tipos[index];
+  var tipos = dadosServicos.filter(s => s.nome == servico);
+  var tipo = tipos[index];
 
-  sessionStorage.setItem("servicoSelecionado", servico);
-  sessionStorage.setItem("tipoSelecionado", tipo.nome);
+  sessionStorage.setItem("servicoSelecionado", tipo.nome);
+  sessionStorage.setItem("tipoSelecionado", tipo.tipo);
   sessionStorage.setItem("preco", tipo.preco);
-  sessionStorage.setItem("profissionais", JSON.stringify(tipo.profissionais));
+  sessionStorage.setItem("profissionais",JSON.stringify(tipo.profissionais.split(","))
+);
 
   window.location.href = "../pages/confirmarAgendamento.html";
 }
@@ -179,8 +182,9 @@ function agendar() {
   const servico = sessionStorage.getItem("servicoSelecionado");
   const tipo = sessionStorage.getItem("tipoSelecionado");
   const data_horario = data + " " + hora;
+  const pagamento = document.getElementById("pagamento").value;
 
-   if (!profissional || !data || !hora) {
+   if (!profissional || !data || !hora || !pagamento) {
     alert("Preencha todos os campos!");
     return;
   }
@@ -190,7 +194,8 @@ function agendar() {
     "&servico=" + encodeURIComponent(servico) +
     "&tipo=" + encodeURIComponent(tipo) +
     "&profissional=" + encodeURIComponent(profissional) +
-    "&data_horario=" + encodeURIComponent(data_horario);
+    "&data_horario=" + encodeURIComponent(data_horario) +
+    "&pagamento=" + encodeURIComponent(pagamento);
   console.log("ENVIANDO:", dados);
 
   ajax("POST", "../api/createAgendamento.php", dados, function(resposta) {
