@@ -1,0 +1,76 @@
+.agendamento-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.agendamento {
+    width: 100%;
+    max-width: 750px;
+    min-height: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 20px;
+    border-radius: var(--borda-media);
+    background: var(--branco);
+    box-shadow: var(--sombra-card);
+
+    border: 1px solid var(--cinza-claro);
+}
+
+/* APENAS títulos internos (serviço, tipo, preço) */
+.agendamento #servicoSelecionado,
+.agendamento #tipo,
+.agendamento #preco {
+    font-size: 27px;
+    font-weight: 600;
+    color: rgb(26, 26, 26);
+}
+
+.agendamento h3 {
+    margin: 0;
+}
+
+.agendamento select,
+.agendamento input {
+     background: var(--branco);
+    border: 1px solid var(--cinza-input);
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 15px;
+    font-family: var(--fonte-padrao);
+    transition: 0.2s ease;
+}
+
+.agendamento select:focus,
+.agendamento input:focus {
+    outline: none;
+    border-color: var(--rosa-principal);
+    box-shadow: 0 0 0 3px rgba(220, 64, 126, 0.15);
+}
+
+.agendamento select:hover,
+.agendamento input:hover {
+    border-color: #bdbdbd;
+}
+
+.agendamento select {
+    cursor: pointer;
+}
+
+.divisor {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 10px 0;
+}
+
+.subtitulo {
+    font-size: 16px;
+    font-weight: 600;
+    color: #666;
+    margin-top: 16px;
+    margin-bottom: 4px;  
+}

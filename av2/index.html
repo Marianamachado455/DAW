@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Luméa</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/modal.css">
 </head>
 <body>
     <header class="navbar">
@@ -13,35 +15,169 @@
     </header>
 
     <main>
-        <section class="heroSection">
-            <h2 class="titulo1">Login</h2>
+        <section class="hero">
+            <div class="hero-texto">
+                <h1>Cuide da sua beleza com quem entende.</h1>
+                <p>
+                    Agende seus serviços de forma rápida e prática.
+                    Conte com profissionais qualificados para transformar
+                    seu visual e proporcionar momentos de cuidado e bem-estar.
+                </p>
+
+                <button id="botao-agendar" onclick="irParaCatalogo()">Agendar agora</button>
+            </div>
+
+            <div class="hero-imagem">
+                <img src="imgs/ImgInicial.jpg" alt="Banner Inicial">
+            </div>
+        </section>
+        <section class="servicos-home">
+            <h2>Conheça nossos serviços</h2>
+
+            <div class="descricao-subtitulo">
+                    Agende seus serviços de forma rápida e prática. Nossa equipe oferece
+                    tratamentos para cabelo, barbearia, maquiagem, manicure, sobrancelhas
+                    e bem-estar, sempre com profissionais qualificados e atendimento
+                    personalizado.
+            </div>
+            <div class="grid-servicos-home">
+                <div class="servico-home">
+                    <h3>Cabelo</h3>
+                    <p>Cortes, escovas  e colorações para todos os estilos.</p>
+                    <ul>
+                        <li><strong>Corte Curto:</strong> cortes modernos e personalizados para renovar o visual.</li>
+                        <li><strong>Coloração Capilar:</strong> mudança de cor com produtos de alta qualidade.</li>
+                        <li><strong>Progressiva:</strong> redução do volume e alinhamento dos fios.</li>
+                        <li><strong>Fade Disfarçado:</strong> corte masculino com acabamento em degradê.</li>
+                    </ul>
+                </div>
+
+                <div class="servico-home">
+                    <h3>Barbearia</h3>
+                    <p>Tratamentos para cabelo e barba, com profissionais qualificados.</p>
+                    <ul>
+                        <li><strong>Barba Simples:</strong> aparo e modelagem para um visual bem cuidado.</li>
+                        <li><strong>Barba Pigmentada:</strong> preenchimento para um acabamento mais uniforme.</li>
+                        <li><strong>Corte Undercut:</strong> estilo moderno com laterais baixas e topo destacado.</li>
+                    </ul>
+                </div>
+
+                <div class="servico-home">
+                    <h3>Manicure</h3>
+                    <p>Manicure, pedicure e esmaltação com acabamento impecável.</p>
+                    <ul>
+                        <li><strong>Manicure:</strong> cuidados completos para unhas das mãos.</li>
+                        <li><strong>Manicure + Pedicure:</strong> tratamento completo para mãos e pés.</li>
+                    </ul>
+                </div>
+
+                <div class="servico-home">
+                    <h3>Massagem</h3>
+                    <p>Massagens relaxantes e terapêuticas para aliviar o estresse.</p>
+                    <ul>
+                        <li><strong>Relaxante:</strong> alívio das tensões e sensação de bem-estar.</li>
+                        <li><strong>Pedras Quentes:</strong> técnica terapêutica que promove relaxamento profundo.</li>
+                    </ul>
+                </div>
+
+                <div class="servico-home">
+                    <h3>Sobrancelha</h3>
+                    <p>Design de sobrancelhas para realçar a beleza do olhar.</p>
+                    <ul>
+                        <li><strong>Design de Sobrancelhas:</strong> modelagem para valorizar o formato do rosto.</li>
+                    </ul>
+                </div>
+
+                <div class="servico-home">
+                    <h3>Maquiagem</h3>
+                    <p>Maquiagem para valorizar você mesmo em todas as ocasiões.</p>
+                    <ul>
+                        <li><strong>Maquiagem Profissional:</strong> produção para festas, eventos e ocasiões especiais.</li>
+                    </ul>
+                </div>
+            </div>
+            <h2 style="margin-top: 80px;">Avaliações</h2>
+            <div class="descricao-subtitulo">
+                A satisfação de nossos clientes é o que nos motiva todos os dias.
+                Confira algumas experiências de quem já passou pela Luméa.
+            </div>
+            <div class="grid-avaliacoes">
+                <div class="avaliacao">
+                    <p class="comentario">
+                        "Tratamento incrível, me senti renovada! O atendimento foi excelente e voltarei com certeza."
+                    </p>
+
+                    <div class="cliente">
+                        <img src="imgs/Avatar1.svg" alt="Avatar 1">
+
+                        <div>
+                            <h4>Gabriela Araújo</h4>
+                            <span>Jovem moderna e exigente</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="avaliacao">
+                    <p class="comentario">
+                        "Cuidado impecável, profissionais muito atenciosos e ambiente extremamente agradável."
+                    </p>
+
+                    <div class="cliente">
+                        <img src="imgs/Avatar2.svg" alt="Avatar 2">
+
+                        <div>
+                            <h4>Bianca Rossi</h4>
+                            <span>Cliente frequente</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="avaliacao">
+                    <p class="comentario">
+                        "Minha maquiagem ficou perfeita e durou o evento inteiro. Super recomendo!"
+                    </p>
+
+                    <div class="cliente">
+                        <img src="imgs/Avatar3.svg" alt="Avatar 3">
+
+                        <div>
+                            <h4>Júlia Marques</h4>
+                            <span>Influenciadora digital</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div id="modal-box" class="modal">
+        <div class="modal-conteudo modal-login">
+            <h2 class="titulo-modal">Login</h2>
 
             <div class="campo-centralizado">
                 <label>Email</label>
-                <input id="email" type="text" class="input-normal" required>
+                <input id="email" type="text" class="input-normal">
             </div>
 
             <div class="campo-centralizado">
                 <label>Senha</label>
-                <input id="senha" type="password" class="input-normal" required>
+                <input id="senha" type="password" class="input-normal">
             </div>
 
-            <div class="Checkbox-login">
-                <div>
-                    <input type="checkbox">
-                    <span>Lembrar senha</span>
-                </div>
+            <div class="checkbox-login">
+                <input type="checkbox">
+                <span>Lembrar senha</span>
             </div>
-            <button type="submit" id="botao-login" onclick="login()">
+
+            <button class="botao-principal" onclick="login()">
                 Entrar
             </button>
 
-            <p id="link-cadastro" style="font-weight: bold;">
+            <p id="link-cadastro">
                 Ainda não possui uma conta?
-                <a href="pages/CadastroUsuario.html" style="color: rgb(207, 13, 88);">Cadastre-se</a>
+                <a href="pages/CadastroUsuario.html">Cadastre-se</a>
             </p>
-        </section>
-    </main>
+        </div>
+    </div>
     <footer>
         <section class="sobre">
 

@@ -1,3 +1,7 @@
+function verificarLogin() {
+  return sessionStorage.getItem("logado") === "true";
+}
+
 function ajax(method, url, data, callback) {
   var xhr = new XMLHttpRequest();
   xhr.open(method, url, true);
@@ -12,6 +16,24 @@ function ajax(method, url, data, callback) {
   };
 
   xhr.send(data || null);
+}
+
+function irParaHome () {
+  window.location.href = "../index.html";
+} 
+
+function irParaCatalogo() {
+  if (!verificarLogin()) {
+    alert("Você precisa estar logado para acessar o catálogo!");
+    mostrarModalLogin();
+    return;
+  }
+
+  window.location.href = "pages/catalogo.html";
+}
+
+function mostrarModalLogin() {
+  document.getElementById("modal-box").style.display = "flex";
 }
 
 // Adicionar Usuario
@@ -59,18 +81,15 @@ function login() {
     const json = JSON.parse(resposta);
 
     if (json.status === "ok") {
+      sessionStorage.setItem("logado", "true");
       sessionStorage.setItem("usuarioNome", json.nome);
-      window.location.href = "pages/pagInicial.html";
-    } 
+      window.location.href = "pages/catalogo.html";
+    }
     
     else {
       alert(json.msg);
     }
   });
-}
-
-function voltarInicio() {
-  window.location.href = "pagInicial.html";
 }
 
 function escolherServicoeTipo(event) {
@@ -211,7 +230,7 @@ function agendar() {
        mostrarModalSucesso();
     } else {
       alert(json.msg);
-      window.location.href = "../pages/pagInicial.html";
+      window.location.href = "../pages/catalogo.html";
     }
   });
 }
@@ -221,7 +240,7 @@ function mostrarModalSucesso() {
 }
 
 function irInicio() {
-  window.location.href = "../pages/pagInicial.html";
+  window.location.href = "../pages/catalogo.html";
 }
 
 //garante exibicao das informacoes do agendamento na tela de confirmacao

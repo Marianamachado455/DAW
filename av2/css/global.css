@@ -1,0 +1,176 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+:root {
+    --rosa-principal: #dc407e;
+    --rosa-escuro: rgb(207, 13, 88);
+    --cinza-input: rgb(202, 202, 202);
+    --cinza-texto: rgb(77, 75, 75);
+
+    --branco: #fff;
+    --preto: #000;
+
+    --fonte-padrao: Arial, sans-serif;
+
+    --borda-pequena: 4px;
+    --borda-media: 20px;
+
+    --sombra-botao: 0 1px 2px rgba(0,0,0,.05);
+    --sombra-card: 0 4px 4px rgba(0,0,0,.25);
+}
+
+/* RESET importante pra não quebrar grid */
+* {
+    box-sizing: border-box;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+main h1,
+main h2 {
+    text-align: center;
+    color: var(--rosa-principal);
+}
+
+main h1 {
+    font-size: 55px;
+    font-weight: bold;
+}
+
+main h2 {
+    font-size: 40px;
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 0 50px;
+    font-weight: bold;
+    background-color: rgb(219, 219, 219);
+}
+
+.logo {
+    font-size: 40px;
+    color: var(--rosa-escuro);
+    cursor: pointer;
+    font-family: "Playfair Display", serif;
+}
+
+.menu {
+    display: flex;
+    gap: 20px;
+}
+
+.botao-principal {
+    width: 65%;
+    margin: 10px auto 0;
+    padding: 14px;
+    display: block;
+    border: none;
+    border-radius: 50px;
+    background: var(--rosa-escuro);
+    color: var(--branco);
+    font-size: 27px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.botao-principal:hover {
+    background: var(--rosa-principal);
+}
+
+footer {
+    background: var(--rosa-escuro);
+    color: white;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+footer section {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+footer p {
+    margin: 0;
+}
+
+#formCadastro {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+.campo,
+.campo-centralizado {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.linha {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.linha .campo {
+    flex: 1;
+}
+
+.linha input {
+    width: 100%;
+}
+
+@media (max-width: 900px) {
+    .linha {
+        flex-direction: column;
+    }
+}
+
+.form-wrapper {
+    width: 560px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-longo {
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px;
+    background: var(--cinza-input);
+    border: 1px solid var(--cinza-input);
+}
+
+.input-normal,
+.input-pequeno {
+    width: 100%;
+    border: 1px solid var(--cinza-input);
+    background: var(--cinza-input);
+    box-shadow: 0 1px 2px #000;
+    border-radius: 6px;
+    padding: 12px;
+}
+
+.campo label,
+.campo-centralizado label {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--cinza-texto);
+}

@@ -4,19 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro - Luméa</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/cadastro.css">
 </head>
 <body>
     <header class="navbar">
-        <h1 class="logo" onclick="voltarInicio()">Luméa</h1>
+        <h1 class="logo" onclick="irParaHome()">Luméa</h1>
     </header>
 
     <main>
         <section class="heroSection">
             <h2 class="titulo1">Cadastro</h2>
 
-            <form id="formCadastro" onsubmit="criarConta(event)">
-                <div class="campo">
+            <div class="form-wrapper">
+                <form id="formCadastro" onsubmit="criarConta(event)">
+                    <div class="campo">
                     <label for="nome">Nome completo</label>
                     <input type="text" id="nome" class="input-longo" required>
                 </div>
@@ -65,7 +67,7 @@
                 </div>
 
                 <br>
-                <button type="submit" id="botao-login">
+                <button type="submit" class="botao-principal">
                     Cadastrar
                 </button>
                 <br>
