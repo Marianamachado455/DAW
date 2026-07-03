@@ -1,12 +1,13 @@
 <?php
     header("Content-Type: application/json");
+    session_start();
 
     include "db.php";
 
     $email = $_POST["email"] ?? "";
     $senha = $_POST["senha"] ?? "";
 
-    $sql = "SELECT nome, senha FROM usuario WHERE email = '$email'";
+    $sql = "SELECT id, nome, senha FROM usuario WHERE email = '$email'";
     $result = $conn->query($sql);
 
     //Verifica email
@@ -29,6 +30,8 @@
         exit;
     }
 
+    $_SESSION["usuario_id"] = $usuario["id"];
+    $_SESSION["usuario_nome"] = $usuario["nome"];   
     echo json_encode([
         "status" => "ok",
         "nome" => $usuario["nome"]

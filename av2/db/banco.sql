@@ -16,6 +16,7 @@ CREATE TABLE agendamento (
     servico VARCHAR(100),
     tipo VARCHAR(100),
     profissional VARCHAR(100),
+    preco DECIMAL(10,2),
     pagamento VARCHAR(20)
 );
 

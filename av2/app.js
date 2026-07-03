@@ -2,6 +2,12 @@ function verificarLogin() {
   return sessionStorage.getItem("logado") === "true";
 }
 
+function protegerPagina() {
+    if (sessionStorage.getItem("logado") !== "true") {
+        window.location.href = "../index.html";
+    }
+}
+
 function ajax(method, url, data, callback) {
   var xhr = new XMLHttpRequest();
   xhr.open(method, url, true);
@@ -46,6 +52,12 @@ function criarConta(event) {
   var telefone = document.getElementById("telefone").value;
   var senha = document.getElementById("senha").value;
   var confirmacaoSenha = document.getElementById("confirmar-senha").value;
+
+  if(!nome || !email || !cpf || !dta_nascimento || !telefone || !senha || !confirmacaoSenha) {
+    alert("Preencha todos os campos!");
+    return;
+  }
+
 
   if (senha != confirmacaoSenha) {
     alert("As senhas não coincidem!");
@@ -108,13 +120,12 @@ function escolherServicoeTipo(event) {
 
       else{
         var tipo = tipos[0];
-
         sessionStorage.setItem("servicoSelecionado", tipo.nome);
         sessionStorage.setItem("tipoSelecionado", tipo.tipo);
         sessionStorage.setItem("preco", tipo.preco);
         sessionStorage.setItem("profissionais",JSON.stringify(tipo.profissionais.split(",")));
-
-        window.location.href="../pages/confirmarAgendamento.html";
+        console.log("Serviço e tipo selecionados:", tipo.nome, tipo.tipo);
+        window.location.href="../pages/Confirmacao.html";
     }
     }
   );
@@ -151,7 +162,7 @@ function escolherTipo(servico, index) {
   sessionStorage.setItem("profissionais",JSON.stringify(tipo.profissionais.split(","))
 );
 
-  window.location.href = "../pages/confirmarAgendamento.html";
+  window.location.href = "../pages/Confirmacao.html";
 }
 
 function mostrarInformacoesAgendamento() {
@@ -195,13 +206,13 @@ function mostrarInformacoesAgendamento() {
 }
 
 function agendar() {
-  const usuario = sessionStorage.getItem("usuarioNome") || "";
   const profissional = document.getElementById("profissionais").value;
   const data = document.getElementById("data").value;
   const hora = document.getElementById("hora").value;
   const servico = sessionStorage.getItem("servicoSelecionado");
   const tipo = sessionStorage.getItem("tipoSelecionado");
   const data_horario = data + " " + hora;
+  const preco = sessionStorage.getItem("preco");
   const pagamento = document.getElementById("pagamento").value;
 
    if (!profissional || !data || !hora || !pagamento) {
@@ -210,11 +221,11 @@ function agendar() {
   }
 
   const dados =
-    "usuario=" + encodeURIComponent(usuario) +
     "&servico=" + encodeURIComponent(servico) +
     "&tipo=" + encodeURIComponent(tipo) +
     "&profissional=" + encodeURIComponent(profissional) +
     "&data_horario=" + encodeURIComponent(data_horario) +
+    "&preco=" + encodeURIComponent(preco) +
     "&pagamento=" + encodeURIComponent(pagamento);
   console.log("ENVIANDO:", dados);
 
@@ -235,6 +246,33 @@ function agendar() {
   });
 }
 
+function exibirAgendamentos() {
+    ajax("GET", "../api/listarAgendamentos.php", null, function(resposta) {
+        console.log("Resposta bruta:", resposta);
+        const agendamentos = JSON.parse(resposta);
+        const cards = document.querySelector(".cards");
+        cards.innerHTML = "";
+
+        for (let i = 0; i < agendamentos.length; i++) {
+            const agendamento = agendamentos[i];
+
+            const dataHora = new Date(agendamento.data_hora);
+            const data = dataHora.toLocaleDateString("pt-BR");
+            const hora = dataHora.toLocaleTimeString("pt-BR", {hour: "2-digit",minute: "2-digit"});
+            cards.innerHTML += `
+                <div class="card">
+                    <h3>${agendamento.servico}</h3>
+                    <p>Profissional: ${agendamento.profissional}</p>
+                    <p>Data: ${data} às ${hora}</p>
+                    <p>Preço: R$ ${agendamento.preco}</p>
+                    <p>Pagamento: ${agendamento.pagamento}</p>
+                </div>
+            `;
+            console.log("Agendamento exibido:", agendamento);
+        }
+    });
+}
+
 function mostrarModalSucesso() {
   document.getElementById("modalSucesso").style.display = "flex";
 }
@@ -243,5 +281,21 @@ function irInicio() {
   window.location.href = "../pages/catalogo.html";
 }
 
-//garante exibicao das informacoes do agendamento na tela de confirmacao
-window.addEventListener("DOMContentLoaded", mostrarInformacoesAgendamento);
+//Listeners separados pra garantir que as funções especificas sejam carregadas sozinhas quando a pagina for carregada
+window.addEventListener("DOMContentLoaded", function () {
+  // Verifica se a página atual não é a index.html ou a raiz, e protege a página se necessário
+    const pagina = window.location.pathname;
+    if (!pagina.endsWith("index.html") && !pagina.endsWith("/") && !pagina.endsWith("CadastroUsuario.html")) {
+        protegerPagina();
+    }
+
+    //Chama a função de exibir informações do agendamento se o elemento existir
+    if (document.getElementById("servicoSelecionado")) {
+        mostrarInformacoesAgendamento();
+    }
+
+    //Chama a função de exibir agendamentos se o elemento existir
+    if (document.querySelector(".cards")) {
+        exibirAgendamentos();
+    }
+});
